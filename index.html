@@ -7,16 +7,56 @@
     <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
     <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
     <title>FIFA</title>
   </head>
   <body>
-    <h1>Click countries to select</h1>
-    <div id="chartdiv"></div>
-    <div id="info">Seletced countries: <span id="selected">-</span></div>
-    <div id="List" class="column">
-      <ul class="menu-list" id="list"></ul>
+    <section class="hero is-success">
+      <div class="hero-foot">
+        <nav class="tabs is-boxed is-fullwidth is-large">
+          <div class="container">
+            <ul>
+              <li class="tab is-active" onclick="openTab(event,'WebDev')">
+                <a>Map</a>
+              </li>
+              <li class="tab" onclick="openTab(event,'WebAud')">
+                <a>group_results </a>
+              </li>
+              <li class="tab" onclick="openTab(event,'Support')">
+                <a>Support</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <div class="container section">
+      <div id="WebDev" class="content-tab">
+        <h1>Click countries to select</h1>
+        <div id="chartdiv"></div>
+        <div id="info">Seletced countries: <span id="selected">-</span></div>
+        <div id="List" class="column">
+          <ul class="menu-list" id="list"></ul>
+        </div>
+      </div>
+      <div id="WebAud" class="content-tab" style="display:none">
+        Helllll
+      </div>
+      <div id="Support" class="content-tab" style="display:none">
+        Hello
+      </div>
     </div>
+
     <script src="main.js"></script>
     <script src="Maps.js"></script>
+    <script src="tabsController.js"></script>
   </body>
 </html>
