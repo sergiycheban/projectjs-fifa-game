@@ -25,9 +25,8 @@ var map = AmCharts.makeChart("chartdiv", {
         document.getElementById("selected").innerHTML = JSON.stringify(
           Maps.getSelectedCountries()
         );
-        console.log("SELECT");
-        clearHTML();
-        country(Maps.getSelectedCountries().slice(-1)[0]);
+        clearHTML("#event");
+        getDataFromEvents(Maps.getSelectedCountries().slice(-1)[0]);
       }
     }
   ]

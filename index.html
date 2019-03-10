@@ -18,41 +18,52 @@
     <title>FIFA</title>
   </head>
   <body>
-    <section class="hero is-success">
-      <div class="hero-foot">
-        <nav class="tabs is-boxed is-fullwidth is-large">
-          <div class="container">
-            <ul>
-              <li class="tab is-active" onclick="openTab(event,'WebDev')">
-                <a>Map</a>
-              </li>
-              <li class="tab" onclick="openTab(event,'WebAud')">
-                <a>Group</a>
-              </li>
-              <li class="tab" onclick="openTab(event,'Support')">
-                <a>Support</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </section>
+    <div class="field is-grouped">
+      <p class="control is-expanded">
+        <input class="input" type="text" placeholder="Find a repository" />
+      </p>
+      <p class="control">
+        <a id="search" class="button is-info">
+          Search
+        </a>
+      </p>
+    </div>
+    <div id="search"></div>
+
+    <div class="hero-foot">
+      <nav class="tabs is-boxed is-fullwidth is-large">
+        <div class="container">
+          <ul>
+            <li class="tab is-active" onclick="openTab(event,'Event')">
+              <a>Event</a>
+            </li>
+            <li class="tab" onclick="openTab(event,'Group')">
+              <a>Group</a>
+            </li>
+            <li class="tab" onclick="openTab(event,'Code')">
+              <a>Code</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
     <div class="container section">
-      <div id="WebDev" class="content-tab">
-        <h1>Click countries to select</h1>
+      <div id="Event" class="content-tab">
         <div id="chartdiv"></div>
-        <div id="info">Seletced countries: <span id="selected">-</span></div>
+        <div id="info">Seletced countries: <span id="selected"></span></div>
         <div id="List" class="column">
           <ul class="menu-list" id="list"></ul>
         </div>
-        <div id="Group"></div>
+        <div id="event"></div>
       </div>
-      <div id="WebAud" class="content-tab" style="display:none">
-        :::::
+      <div id="Group" class="content-tab" style="display:none">
+        <div id="group"></div>
       </div>
-      <div id="Support" class="content-tab" style="display:none">
-        Hello
+      <div id="Code" class="content-tab" style="display:none">
+        <div id="fifa_code"></div>
+        <br />
+        <div id="fifa_code_event"></div>
       </div>
     </div>
     <script src="Ajax.js"></script>
