@@ -1,14 +1,14 @@
 var map = AmCharts.makeChart("chartdiv", {
   type: "map",
   theme: "light",
-  projection: "eckert3",
+  projection: "miller",
   dataProvider: {
     map: "worldLow",
     getAreasFromMap: true
   },
   areasSettings: {
-    selectedColor: "#CC0000",
-    selectable: true
+    selectable: true,
+    selectedColor: "#CC0000"
   },
 
   listeners: [
@@ -25,6 +25,9 @@ var map = AmCharts.makeChart("chartdiv", {
         document.getElementById("selected").innerHTML = JSON.stringify(
           Maps.getSelectedCountries()
         );
+        console.log("SELECT");
+        clearHTML();
+        country(Maps.getSelectedCountries().slice(-1)[0]);
       }
     }
   ]
