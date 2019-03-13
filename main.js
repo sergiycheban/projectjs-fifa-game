@@ -2,7 +2,6 @@ init();
 
 function init() {
   getDataFromGroup();
-  getDataFromTeams();
 }
 
 function clearHTML(selector) {
@@ -100,6 +99,7 @@ async function getDataFromGroup() {
 
       countryInGroup = [];
     }
+    getDataFromTeams();
   });
 }
 
