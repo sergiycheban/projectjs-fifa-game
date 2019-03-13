@@ -25,6 +25,11 @@ var map = AmCharts.makeChart("chartdiv", {
         document.getElementById("selected").innerHTML = JSON.stringify(
           Maps.getSelectedCountries()
         );
+        generateActions(
+          "Country " +
+            JSON.stringify(Maps.getSelectedCountries()) +
+            " is selected on the map"
+        );
         clearHTML("#event");
         getDataFromEvents(Maps.getSelectedCountries().slice(-1)[0]);
       }

@@ -12,9 +12,20 @@ function searchByCountry() {
   var searchText = document.getElementById("searchText").value;
   clearHTML("#event");
   getDataFromEvents(searchText);
+  generateActions("Search for the word " + searchText);
 }
 
-async function getDataFromEvents(key) {
+function generateHTMLForCommittedActions() {
+  clearHTML("#committedActions");
+  for (let index = 0; index < committedActions.length; index++) {
+    var a = document.createElement("a");
+    a.className = "list-item";
+    a.innerHTML = committedActions[index] + "<br></br>";
+    document.getElementById("committedActions").appendChild(a);
+  }
+}
+
+function getDataFromEvents(key) {
   Ajax.get("http://worldcup.sfg.io/matches", data => {
     isHaveEvent = false;
     var keys = Object.keys(data[0]);
@@ -56,7 +67,7 @@ async function getDataFromEvents(key) {
   });
 }
 
-async function getDataFromTeams() {
+function getDataFromTeams() {
   Ajax.get("http://worldcup.sfg.io/teams", data => {
     var fifa_codes = [];
     for (let index = 0; index < data.length; index++) {
@@ -75,7 +86,7 @@ async function getDataFromTeams() {
   });
 }
 
-async function getDataFromGroup() {
+function getDataFromGroup() {
   Ajax.get("http://worldcup.sfg.io/teams/group_results", data => {
     for (let index = 0; index < data.length; index++) {
       var ul = document.createElement("ul");
@@ -103,7 +114,7 @@ async function getDataFromGroup() {
   });
 }
 
-async function getDataFromCountry(code) {
+function getDataFromCountry(code) {
   clearHTML("#fifa_code_event");
 
   Ajax.get("http://worldcup.sfg.io/matches/country?fifa_code=" + code, data => {
@@ -132,5 +143,6 @@ async function getDataFromCountry(code) {
       ul.appendChild(li);
       document.getElementById("fifa_code_event").appendChild(ul);
     }
+    generateActions("Search for the fifa_code " + code);
   });
 }

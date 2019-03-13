@@ -43,6 +43,9 @@
             <li class="tab" onclick="openTab(event,'Code')">
               <a>Code</a>
             </li>
+            <li class="tab" onclick="openTab(event,'Actions')">
+              <a>Committed Actions</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -65,8 +68,12 @@
         <br />
         <div id="fifa_code_event"></div>
       </div>
+      <div id="Actions" class="content-tab" style="display:none">
+        <div class="list is-hoverable" id="committedActions"></div>
+      </div>
     </div>
     <script src="Ajax.js"></script>
+    <script src="actions.js"></script>
     <script src="main.js"></script>
     <script src="Maps.js"></script>
     <script src="tabsController.js"></script>
