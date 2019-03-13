@@ -2,6 +2,7 @@ init();
 
 function init() {
   getDataFromGroup();
+  generateHTMLForCommittedActions();
 }
 
 function clearHTML(selector) {
