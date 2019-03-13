@@ -1,5 +1,9 @@
-getDataFromGroup();
-getDataFromTeams();
+init();
+
+function init() {
+  getDataFromGroup();
+  getDataFromTeams();
+}
 
 function clearHTML(selector) {
   document.querySelector(selector).innerHTML = "";
@@ -11,34 +15,38 @@ function searchByCountry() {
   getDataFromEvents(searchText);
 }
 
-function getDataFromEvents(country) {
+async function getDataFromEvents(key) {
   Ajax.get("http://worldcup.sfg.io/matches", data => {
     isHaveEvent = false;
+    var keys = Object.keys(data[0]);
+    console.log(keys);
     for (let index = 0; index < data.length; index++) {
-      if (data[index].away_team_country == country) {
-        isHaveEvent = true;
-        var ul = document.createElement("ul");
-        var li = document.createElement("li");
-        li.innerHTML =
-          "<article class='message is-info'> <div class='message-header'> " +
-          data[index].away_team_country +
-          " - " +
-          data[index].home_team_country +
-          " </div> <div class='message-body'> The match took place in " +
-          data[index].venue +
-          " between the teams of " +
-          data[index].away_team_country +
-          " and " +
-          data[index].home_team_country +
-          ". " +
-          data[index].winner +
-          " won  " +
-          data[index].away_team.goals +
-          "-" +
-          data[index].home_team.goals +
-          "</div> </article><tr></tr>";
-        ul.appendChild(li);
-        document.getElementById("event").appendChild(ul);
+      for (var i of Object.keys(data[0])) {
+        if (data[index][i] == key) {
+          isHaveEvent = true;
+          var ul = document.createElement("ul");
+          var li = document.createElement("li");
+          li.innerHTML =
+            "<article class='message is-info'> <div class='message-header'> " +
+            data[index].away_team_country +
+            " - " +
+            data[index].home_team_country +
+            " </div> <div class='message-body'> The match took place in " +
+            data[index].venue +
+            " between the teams of " +
+            data[index].away_team_country +
+            " and " +
+            data[index].home_team_country +
+            ". " +
+            data[index].winner +
+            " won  " +
+            data[index].away_team.goals +
+            "-" +
+            data[index].home_team.goals +
+            "</div> </article><tr></tr>";
+          ul.appendChild(li);
+          document.getElementById("event").appendChild(ul);
+        }
       }
     }
     if (!isHaveEvent) {
@@ -49,7 +57,7 @@ function getDataFromEvents(country) {
   });
 }
 
-function getDataFromTeams() {
+async function getDataFromTeams() {
   Ajax.get("http://worldcup.sfg.io/teams", data => {
     var fifa_codes = [];
     for (let index = 0; index < data.length; index++) {
@@ -68,7 +76,7 @@ function getDataFromTeams() {
   });
 }
 
-function getDataFromGroup() {
+async function getDataFromGroup() {
   Ajax.get("http://worldcup.sfg.io/teams/group_results", data => {
     for (let index = 0; index < data.length; index++) {
       var ul = document.createElement("ul");
@@ -95,7 +103,7 @@ function getDataFromGroup() {
   });
 }
 
-function getDataFromCountry(code) {
+async function getDataFromCountry(code) {
   clearHTML("#fifa_code_event");
 
   Ajax.get("http://worldcup.sfg.io/matches/country?fifa_code=" + code, data => {
@@ -126,9 +134,3 @@ function getDataFromCountry(code) {
     }
   });
 }
-
-var search = document.getElementById("search");
-
-search.addEventListener("click", function() {
-  // console.log(fifa_codes);
-});
